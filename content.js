@@ -72,22 +72,48 @@
       btn.onmouseout = () => btn.style.backgroundColor = "transparent";
 
       btn.onclick = async (e) => {
+  e.preventDefault();
 
-        e.preventDefault();
+  const originalHTML = btn.innerHTML; // speichere das Original-Icon+Label
+  btn.disabled = true;
+  btn.style.opacity = "0.6";
 
-        btn.disabled = true;
-        btn.style.opacity = "0.6";
+  // Lade-Animation anzeigen
+  btn.innerHTML = `<span class="spinner" style="
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top: 2px solid rgb(29,155,240);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 6px;
+    "></span>Loading...`;
 
-        const tweetText = getTweetText(nativeToolbar);
+  // Spinner CSS hinzufügen (falls noch nicht vorhanden)
+  if (!document.getElementById("spinner-style")) {
+    const style = document.createElement("style");
+    style.id = "spinner-style";
+    style.innerHTML = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-        const aiText = await requestAI(data.id, tweetText);
+  const tweetText = getTweetText(nativeToolbar);
 
-        insertTextIntoReply(aiText);
+  const aiText = await requestAI(data.id, tweetText);
 
-        btn.disabled = false;
-        btn.style.opacity = "1";
+  insertTextIntoReply(aiText);
 
-      };
+  // Button wiederherstellen
+  btn.innerHTML = originalHTML;
+  btn.disabled = false;
+  btn.style.opacity = "1";
+};
 
       toolbar.appendChild(btn);
 
