@@ -1,0 +1,19 @@
+.my-custom-x-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.my-x-btn {
+  background: #1d9bf0;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.my-x-btn:hover {
+  opacity: 0.9;
+}
