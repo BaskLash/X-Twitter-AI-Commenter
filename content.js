@@ -1,9 +1,24 @@
 (function () {
   const ICONS = {
-    prompt: `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"></path></svg>`,
-    templates: `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 5V3c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v2h5v2H2V5h5zm2-2v2h6V3H9zM2 9h20v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V9zm16 4h-4v-4h-2v4H8v2h4v4h2v-4h4v-2z"></path></svg>`,
-    aiReply: `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2c-5.52 0-10 4.48-10 10 0 1.94.55 3.75 1.5 5.28l-1.5 5.72 5.72-1.5c1.53.95 3.34 1.5 5.28 1.5 5.52 0 10-4.48 10-10S17.52 2 12 2zm1.2 13.5l-2.4-2.4-2.4 2.4-1.4-1.4 2.4-2.4-2.4-2.4 1.4-1.4 2.4 2.4 2.4-2.4 1.4 1.4-2.4 2.4 2.4 2.4-1.4 1.4z"></path></svg>`,
-    regenerate: `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z"></path></svg>`,
+    // Fröhlicher Smiley (statt Häkchen)
+    positive: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+
+    // Lachender Smiley (Witz)
+    joke: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M18 13c0 3.3-2.7 5-6 5s-6-1.7-6-5h12z"></path>
+    <path d="M7 9l2 2-2 2"></path>
+    <path d="M17 9l-2 2 2 2"></path>
+</svg>`,
+
+    // Glühbirne (Idee)
+    idea: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.5 2 4.5 2 6.5h10c0-2 2-4 2-6.5a7 7 0 0 0-7-7z"></path></svg>`,
+
+    // Minus-Symbol (Ablehnung)
+    disagree: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>`,
+
+    // Fragezeichen (Frage)
+    question: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
   };
 
   function insertTextIntoReply(text) {
@@ -49,10 +64,11 @@
     });
 
     const buttons = [
-      { id: "prompt", label: "Prompt", icon: ICONS.prompt },
-      { id: "templates", label: "Templates", icon: ICONS.templates },
-      { id: "ai-reply", label: "AI Reply", icon: ICONS.aiReply },
-      { id: "regenerate", label: "Regenerate", icon: ICONS.regenerate },
+      { id: "positive", label: "Positive", icon: ICONS.positive },
+      { id: "joke", label: "Joke", icon: ICONS.joke },
+      { id: "idea", label: "Idea", icon: ICONS.idea },
+      { id: "disagree", label: "Disagree", icon: ICONS.disagree },
+      { id: "Question", label: "Question", icon: ICONS.question },
     ];
 
     buttons.forEach((data) => {

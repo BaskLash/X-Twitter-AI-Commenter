@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "X Reply Toolbar",
+  "name": "GhostReply AI - AI-Powered Replies & Quote-Posts for X / Twitter",
   "version": "1.0.0",
-  "description": "Injects a custom toolbar into the X reply composer",
+  "description": "Create meaningful personalzied comments 10x faster with just 1 click, with GPT-4 for X .",
   "content_scripts": [
     {
       "matches": ["https://x.com/*"],
@@ -10,5 +10,21 @@
       "css": ["styles.css"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icon/icon16.png",
+      "32": "icon/icon32.png",
+      "48": "icon/icon48.png",
+      "64": "icon/icon96.png",
+      "128": "icon/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon/icon16.png",
+    "32": "icon/icon32.png",
+    "48": "icon/icon48.png",
+    "64": "icon/icon96.png",
+    "128": "icon/icon128.png"
+  }
 }

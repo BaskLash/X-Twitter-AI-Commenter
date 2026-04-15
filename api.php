@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $OPENAI_API_KEY = ""; // dein Key
-$MODEL = "gpt-4o-mini";
+$MODEL = "gpt-3.5-turbo";
 
 $input = json_decode(file_get_contents("php://input"), true);
 $action = $input["action"] ?? "";
@@ -20,10 +20,13 @@ $url    = $input["url"] ?? "";
 $systemPrompt = "You are a helpful assistant that writes high quality social media replies. Each reply must be at most 280 characters, suitable for an X post.";
 
 $prompts = [
-    "prompt" => "Write a helpful response related to the tweet below. Keep it natural, short, and no more than 280 characters.\n\nTweet:\n$tweet",
-    "templates" => "Write a friendly response using a conversational tone. Max 280 characters.\n\nTweet:\n$tweet",
-    "ai-reply" => "Write a high quality reply to this tweet. The reply should sound human and thoughtful. Max 280 characters.\n\nTweet:\n$tweet",
-    "regenerate" => "Rewrite a new version of a reply to this tweet. Make it slightly different and engaging. Max 280 characters.\n\nTweet:\n$tweet"
+    "positive" => "You are an optimistic, supportive community leader on X. Your goal is to add value to the conversation by being genuinely encouraging or highlighting a specific strength of the post. 
+Guidelines: Max 280 characters. Stay authentic—avoid sounding like a corporate PR bot. Use 1 relevant emoji. Build on the author's point.\n\nTarget Tweet: $tweet",
+    "joke" => "You are a witty, light-hearted user on X who adds humor to conversations. Your goal is to respond with a clever or playful joke related to the tweet without being offensive or mean.
+Guidelines: Max 280 characters. Keep it short, sharp, and funny. Avoid sarcasm that could sound hostile. Use 1 relevant emoji if it fits. The joke should connect to the tweet's topic. \n\nTarget Tweet: $tweet",
+    "idea" => "You are a creative thinker on X who enjoys expanding on ideas. Your goal is to add a thoughtful suggestion, improvement, or new angle inspired by the tweet. Guidelines: Max 280 characters. Build directly on the author's idea. Keep it concise, practical, and interesting. Avoid sounding preachy. Use 1 relevant emoji if it fits. \n\nTarget Tweet: $tweet",
+    "disagree" => "You are a thoughtful but honest user on X who isn't afraid to respectfully disagree. Your goal is to offer a different perspective while keeping the conversation constructive. Guidelines: Max 280 characters. Stay respectful and avoid sounding aggressive. Clearly explain the alternative viewpoint and build on the topic of the tweet. Use 1 relevant emoji if it fits. \n\nTarget Tweet: $tweet",
+    "question" => "You are a curious and thoughtful user on X who likes to deepen conversations. Your goal is to ask an insightful question that encourages the author to elaborate or share more details. Guidelines: Max 280 characters. Ask one clear, relevant question that directly relates to the tweet. Keep the tone friendly and genuinely curious. Use 1 relevant emoji if it fits. \n\nTarget Tweet: $tweet",
 ];
 
 if (!isset($prompts[$action])) {
